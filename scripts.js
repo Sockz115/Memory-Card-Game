@@ -3,6 +3,7 @@ const cards = document.querySelectorAll('.memory-card');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+let contadorDeCartas = 0;
 
 function flipCard() {
   if (lockBoard) return;
@@ -28,10 +29,14 @@ function checkForMatch() {
 }
 
 function disableCards() {
+  contadorDeCartas += 2;
   firstCard.removeEventListener('click', flipCard);
   secondCard.removeEventListener('click', flipCard);
-
+  console.log(contadorDeCartas)
   resetBoard();
+  if (contadorDeCartas == 12) {
+    document.getElementById("winner-screen").style.display = "block";
+  }
 }
 
 function unflipCards() {
@@ -42,7 +47,7 @@ function unflipCards() {
     secondCard.classList.remove('flip');
 
     resetBoard();
-  }, 1500);
+  }, 1000);
 }
 
 function resetBoard() {
@@ -58,3 +63,20 @@ function resetBoard() {
 })();
 
 cards.forEach(card => card.addEventListener('click', flipCard));
+
+function playAgain() {
+  cards.forEach(card => {
+  card.classList.remove('flip');
+  });
+  setTimeout(() => {
+    (function shuffle() {
+      cards.forEach(card => {
+        let randomPos = Math.floor(Math.random() * 12);
+        card.style.order = randomPos;
+      });
+    })();
+  }, 1000);
+  document.getElementById("winner-screen").style.display = "none";
+  cards.forEach(card => card.addEventListener('click', flipCard));
+  contadorDeCartas = 0;
+}
