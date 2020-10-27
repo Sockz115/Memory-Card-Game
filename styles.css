@@ -4,6 +4,25 @@
     box-sizing: border-box;
   }
   
+  header a {
+    text-decoration: none;
+    font-size: 30px;
+    background: black;
+    color: white;
+    padding: 7px 13px;
+    float: right;
+  }
+
+  header a:hover {
+    background: #004e8a;
+    transition: .5s;
+  }
+
+  header a:active {
+    transform: scale(0.90);
+    transition: transform .2s;
+  }
+
   body {
     height: 100vh;
     display: flex;
@@ -57,25 +76,6 @@
   
   .front-face {
     transform: rotateY(180deg);
-  }
-
-  footer a {
-    text-decoration: none;
-    font-size: 30px;
-    background: black;
-    color: white;
-    padding: 7px 13px;
-    float: right;
-  }
-
-  footer a:hover {
-    background: #004e8a;
-    transition: .5s;
-  }
-
-  footer a:active {
-    transform: scale(0.90);
-    transition: transform .2s;
   }
   
   div.blocked-screen {
